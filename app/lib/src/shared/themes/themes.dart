@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 part 'color_schemes.g.dart';
 
 ThemeData get lightTheme => ThemeData(
@@ -10,7 +11,7 @@ ThemeData get lightTheme => ThemeData(
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: _lightColorScheme.primary,
-        foregroundColor: Colors.white,
+        foregroundColor: _lightColorScheme.onPrimary,
       ),
       segmentedButtonTheme: _segmentedButtonTheme,
     );
