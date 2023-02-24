@@ -3,17 +3,16 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:listinha/routes.dart';
 import 'package:listinha/src/shared/stores/app_store.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final appStore = context.watch<AppStore>(
-      (store) => store.syncDate,
-    );
-    final syncDate = appStore.syncDate.value;
-    String syncDateText = 'Nunca';
+    final appStore = context.read<AppStore>();
+    final syncDate = context.select(() => appStore.syncDate);
+    var syncDateText = 'Nunca';
     if (syncDate != null) {
       final dateFormat = DateFormat('dd/MM/yyyy às hh:mm');
       syncDateText = dateFormat.format(syncDate);
